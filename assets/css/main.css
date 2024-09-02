@@ -1334,57 +1334,86 @@ input, select, textarea {
 				line-height: 2;
 			}
 
-		#header nav ul {
-			display: -moz-flex;
-			display: -webkit-flex;
-			display: -ms-flex;
-			display: flex;
-			margin-bottom: 0;
-			list-style: none;
-			padding-left: 0;
-			border: solid 1px #ffffff;
-			border-radius: 4px;
-		}
-
-			#header nav ul li {
+			#header nav ul {
+				display: flex;
+				flex-wrap: wrap; /* Allows the nav items to wrap */
+				justify-content: center; /* Centers the items horizontally */
+				margin-bottom: 0;
+				list-style: none;
+				padding-left: 0;
+				border: solid 1px #ffffff;
+				border-radius: 4px;
+			  }
+			  
+			  #header nav ul li {
+				flex: 1 1 auto; /* Allows the items to shrink and grow */
 				padding-left: 0;
 				border-left: solid 1px #ffffff;
+				text-align: center; /* Centers the text within each item */
+			  }
+			  
+			  #header nav ul li:first-child {
+				border-left: 0;
+			  }
+			  
+			  #header nav ul li a {
+				display: block;
+				width: 100%; /* Takes full width of li */
+				height: 2.75rem;
+				line-height: 2.75rem;
+				padding: 0 1.25rem;
+				text-transform: uppercase;
+				letter-spacing: 0.2rem;
+				font-size: 0.8rem;
+				border-bottom: 0;
+			  }
+			
+			  /* Increased padding for the "Entertainment" link */
+			#header nav ul li a.special-padding {
+				padding: 0 2.4rem; /* Adjust the padding values as needed */
 			}
 
+			  
+			  #header nav ul li a:hover {
+				background-color: rgba(255, 255, 255, 0.075);
+			  }
+			  
+			  #header nav ul li a:active {
+				background-color: rgba(255, 255, 255, 0.175);
+			  }
+			  
+			  #header nav.use-middle:after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: calc(50% - 1px);
+				width: 1px;
+				height: 100%;
+				background: #ffffff;
+			  }
+			  
+			  /* Media Queries for Responsive Design */
+			  @media (max-width: 768px) {
+				#header nav ul {
+				  flex-direction: column; /* Stacks the nav items vertically on smaller screens */
+				}
+			  
+				#header nav ul li {
+				  text-align: center; /* Aligns the text to the left for vertical layout */
+				  border-left: 0; /* Removes the left border for vertical layout */
+				  border-top: solid 1px #ffffff; /* Adds top border instead */
+
+				}
+			  
 				#header nav ul li:first-child {
-					border-left: 0;
+				  border-top: 0; /* Removes the top border for the first item */
 				}
-
-				#header nav ul li a {
-					display: block;
-					min-width: 7.5rem;
-					height: 2.75rem;
-					line-height: 2.75rem;
-					padding: 0 1.25rem 0 1.45rem;
-					text-transform: uppercase;
-					letter-spacing: 0.2rem;
-					font-size: 0.8rem;
-					border-bottom: 0;
-				}
-
-					#header nav ul li a:hover {
-						background-color: rgba(255, 255, 255, 0.075);
-					}
-
-					#header nav ul li a:active {
-						background-color: rgba(255, 255, 255, 0.175);
-					}
-
-		#header nav.use-middle:after {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: calc(50% - 1px);
-			width: 1px;
-			height: 100%;
-			background: #ffffff;
-		}
+				#header nav.use-middle:after {
+					display: none;
+				  }
+			  }
+			  
 
 		#header nav.use-middle ul li.is-middle {
 			border-left: 0;
@@ -1816,3 +1845,82 @@ input, select, textarea {
 .team-member:hover {
     transform: scale(1.05);
 }
+
+/* Base styles */
+.thumbnail {
+	display: flex;
+	align-items: flex-start;
+
+	padding: 10px;
+	width: 100%;
+	max-width: 600px;
+	margin: 20px auto;
+
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .thumbnail-left {
+	flex: 1;
+  }
+  
+  .thumbnail-image {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+	transition: transform 0.3s ease;
+  }
+  
+  .thumbnail-right {
+	flex: 2;
+	margin-left: 15px;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .article-name {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 5px;
+  }
+  
+  .author-date {
+	font-size: 14px;
+	color: #e1e1e1;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+  }
+  
+  .short-description {
+	font-size: 14px;
+	color: #bababa;
+  }
+  
+  /* Hover Effects */
+  .thumbnail:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transform: translateY(-5px);
+  }
+  
+  .thumbnail:hover .thumbnail-image {
+	transform: scale(1.05);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+	.thumbnail {
+	  flex-direction: column;
+	  align-items: left;
+	}
+  
+	.thumbnail-right {
+	  margin-left: 0;
+	  margin-top: 10px;
+	  text-align: left;
+	}
+  
+	.author-date {
+	  justify-content: left;
+	}
+  }
+  
